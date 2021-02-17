@@ -1,0 +1,10 @@
+numpy
+pandas
+tensorflow-gpu
+sklearn
+scikit-learn
+matplotlib
+seaborn
+h5py
+scipy
+simplejson
