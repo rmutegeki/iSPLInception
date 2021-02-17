@@ -1,0 +1,1351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta content="text/html; charset=ISO-8859-1"
+          http-equiv="Content-Type">
+    <title>documentation</title>
+    <meta content="OPPORTUNITY Dataset for Human Activity Recognition
+      from Wearable, Object, and Ambient Sensors" name="description">
+</head>
+<body>
+<h1>OPPORTUNITY Dataset for Human Activity Recognition from
+    Wearable, Object, and Ambient Sensors</h1>
+<p><span style="font-style: italic;">We recommend to refer to this
+        dataset for short as the "OPPORTUNITY Activity Recognition
+        Dataset" in publications.</span><br>
+</p>
+<h2>Summary</h2>
+The <span style="font-style: italic;">OPPORTUNITY Dataset for Human
+      Activity Recognition from Wearable, Object, and Ambient Sensors</span>
+(hereafter OPPORTUNITY dataset) is a dataset devised to benchmark
+human activity recognition algorithms (classification, automatic
+data segmentation, sensor fusion, feature extraction, etc).<br>
+<br>
+This dataset captures the challenges common to many other activity
+recognition scenarios. Thus, methods proved to be robust on this
+dataset can likely be successfully translated to other challenging
+activity recognition problems.<br>
+<br>
+A subset of this dataset was used for the "<a
+        href="http://opportunity-project.eu/challenge">OPPORTUNITY
+    Activity Recognition Challenge</a>" organized for the <span
+        style="font-style: italic;">2011 IEEE conf on Systems, Man and
+      Cybernetics Workshop on "<span style="text-decoration: underline;">Robust
+
+
+        machine learning techniques for human activity recognition</span>"</span>.
+<br>
+<br>
+The dataset comprises the readings of motion sensors recorded while
+users executed typical daily activities in a room simulating a
+studio flat. <br>
+The characteristics are:<br>
+<ul>
+    <li>Body-worn sensors: 7 inertial measurement units (IMUs), 12 3D
+        acceleration sensors, 4 3D coordinates from a localization
+        system
+    </li>
+    <li>Object sensors: 12 objects are instrumented with wireless
+        sensors measuring 3D acceleration and 2D rate of turn&nbsp;
+    </li>
+    <li>Ambient sensors: 13 switches and 8 3D acceleration sensors in
+        kitchen appliances and furniture<br>
+    </li>
+    <li>Recordings: 4 users, 6 runs per users. Of these, 5 are
+        Activity of Daily Living (ADL) runs, where the users execute in
+        a very natural manner daily activities. The 6th run is a "drill"
+        run, where users execute a scripted sequence of activities. The
+        ADL runs are characterized by larger variability in the way
+        activities are executed, while activities in the drill run tend
+        to be executed with less variability
+    </li>
+    <li>Annotations/classes: the activities of the user in the
+        scenario are annotated on different levels. There are separate
+        annotation tracks for: 4 "modes of locomotion" classes (sit,
+        stand, lie, walk); a rich set of low-level action classes
+        relating 13 actions to 23 objects; 17 mid-level gesture classes
+        (e.g. open/close door/fridge/dishwasher, drink, toggle ...); and
+        5 high-level activity classes<br>
+    </li>
+    <li>Data format: synchronized sensor readings and annotations in
+        text matrix format (one line per sample, one column per sensor
+        channel, last columns for annotations
+    </li>
+    <li>Data characteristics: missing data due to data loss are
+        indicated by "NaN" (not-a-number) in the corresponding matrix
+        entry. Data loss mostly affects wireless sensors. <br>
+    </li>
+    <li>Instances: all subjects and all recordings combined; modes of
+        locomotion: 3653, mid-level gestures: 2551. <br>
+    </li>
+</ul>
+The present dataset extends the dataset released for the
+"OPPORTUNITY Activity Recognition Challenge" in the following
+manner:<br>
+<ul>
+    <li>It comprises the complete label set (some labels which were
+        withdrawn from the files released for the challenge in order to
+        evaluate the participant's submissions)
+    </li>
+    <li>It comprises additional label kinds: the low-level action
+        classes, and the high-level activity classes<br>
+    </li>
+    <li>It contains additional sensors: all the object and ambient
+        sensors, and additional channels from the body-worn sensors
+        (e.g. quaternions from the inertial measurement units).<br>
+    </li>
+</ul>
+Note that this dataset remains a subset of the full OPPORTUNITY
+dataset described in [1].<br>
+<h2>Detailed description [1]<br>
+</h2>
+<h3>Recording scenario</h3>
+<div style="text-align: center;"><img alt="" src="img/arena3.png" style=" width: 300px; height:
+        248px;"><br>
+    Room in which the user's activities are recorded.<br>
+</div>
+<br>
+The activity recognition environment and scenario has been designed
+to generate many activity primitives, yet in a realistic manner.
+Subjects operated in a room simulating a studio flat with a
+deckchair, a kitchen, doors giving access to the outside, a coffee
+machine, a table and a chair.<br>
+<br>
+We achieved a natural execution of activities by instructing users
+to follow a high-level script but leaving them free interpretation
+as how to achieve the high-level goals. We furthermore encouraged
+them to perform as naturally as possible with all the variations
+they were used to. <br>
+<br>
+For each subject we recorded 6 different runs. Five of them, termed
+activity of daily living (ADL), followed a given scenario as
+detailed below. The remaining one, a drill run, was designed to
+generate a large number of activity instances. The ADL run consists
+of temporally unfolding situations. In each situation (e.g.
+preparing sandwich), a large number of action primitives occur (e.g.
+reach for bread, move to bread cutter, operate bread cutter). <br>
+<h4>ADL run<br>
+</h4>
+The ADL run consists of temporally unfolding situations:<br>
+<ol>
+    <li>Start: lying on the deckchair, get up</li>
+    <li>Groom: move in the room, check that all the objects are in the
+        right places in the drawers and on shelves
+    </li>
+    <li>Relax: go outside and have a walk around the building</li>
+    <li>Prepare cofee: prepare a coffee with milk and sugar using the
+        coffee machine
+    </li>
+    <li>Drink coffee: take coffee sips, move around in the environment
+        <br>
+    </li>
+    <li>Prepare sandwich: include bread, cheese and salami, using the
+        bread cutter and various knifes and plates
+    </li>
+    <li>Eat sandwich</li>
+    <li>Cleanup: put objects used to original place or dish washer,
+        cleanup the table
+    </li>
+    <li>Break: lie on the deckchair</li>
+</ol>
+<h4>Drill run</h4>
+The drill run consists of 20 repetitions of the following sequence
+of activities:<br>
+<ol>
+    <li>Open then close the fridge</li>
+    <li>Open then close the dishwasher</li>
+    <li>Open then close 3 drawers (at different heights)</li>
+    <li>Open then close door 1</li>
+    <li>Open then close door 2</li>
+    <li>Toggle the lights on then off</li>
+    <li>Clean the table</li>
+    <li>Drink while standing</li>
+    <li>Drink while seated</li>
+</ol>
+<h3>Sensors</h3>
+<h4>Body-worn sensors<br>
+</h4>
+The body-worn sensors include 7 inertial measurement units and 12 3D
+acceleration sensors. <br>
+<br>
+The inertial measurement units provide readings of: 3D acceleration,
+3D rate of turn, 3D magnetic field, and orientation of the sensor
+with respect to a world coordinate system in quaternions. Five
+sensors on the upper body are deployed using a jacket, thereby
+ensuring reproducible sensor placement. The remaining two sensors
+are mounted on the user's shoes.<br>
+<br>
+The acceleration sensors provide 3D acceleration. As these sensors
+are wireless, more data loss are expected in these channels.<br>
+<br>
+Four tags for an ultra-wideband localization system are placed on
+the left/right front/back side of the shoulder.&nbsp; These deliver
+3D coordinates of the tag in a room coordinate system.<br>
+<div style="text-align: center;"><br>
+</div>
+<table border="0" cellpadding="2"
+       cellspacing="2" style=" text-align: left; width: 100%;">
+    <tbody>
+    <tr>
+        <td style="vertical-align: top;">
+            <div style="text-align: center;"><img alt="" src="img/Fig1Cl.png" style=" width: 300px;
+                height: 328px;"><br>
+            </div>
+            <div style="text-align: center;">Placement of the inertial
+                measurement units on-body with the name of the sensor as
+                appearing in the data files.<br>
+            </div>
+        </td>
+        <td style="vertical-align: top;">
+            <div style="text-align: center;"><img alt="" src="img/Fig1Cr.png" style=" width: 300px;
+                height: 318px;"><br>
+            </div>
+            <div style="text-align: center;">Placement of the 3D
+                acceleration sensors on-body with the name of the sensor
+                as appearing in the data files.
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div style="text-align: center;"><img alt="motion jacket" src="img/motion_jacket_complete.jpg" style=" width: 300px; height:
+        199px;"><br>
+    <br>
+    Jacket in which the inertial measurement units are deployed on the
+    upper body.<br>
+</div>
+<h4>Object sensors</h4>
+12 objects are instrumented with wireless sensors measuring 3D
+acceleration and 2D rate of turn. This allows to detect which
+objects are used, and possibly also the kind of usage that is made
+of them.<br>
+<br>
+<table border="0" cellpadding="2"
+       cellspacing="2" style=" text-align: left; width: 100%;">
+    <tbody>
+    <tr>
+        <td style="vertical-align: top; text-align: center;"><img
+                alt="objects" src="img/objects.JPG"
+                style=" width: 300px; height: 225px;"><br>
+            Most objects manipulated by the user are instrumented with a
+            wireless sensor comprising a 3D accelerometer and a 2D
+            gyroscope. <br>
+            In the figure the sensors attached e.g. to the milk bottle,
+            cutlery, cup and glass are visible.
+        </td>
+        <td style="vertical-align: top; text-align: center;"><img
+                alt="sugar sensors" src="img/bt_obj1.jpg"
+                style=" width: 300px; height: 225px;"><br>
+            Close up on the sugar container and the spoon within it,
+            with a sensor attached on both elements.<br>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h4>Ambient sensors</h4>
+Ambient sensors include 13 switches and 8 3D acceleration sensors in
+drawers, kitchen appliances and doors.<br>
+<br>
+The reed switches are placed in triplets on the fridge, dishwasher
+and drawer 2 and drawer 3. They may be used to detect three states
+of the furniture element: closed, half open, and fully open. The
+drawer 1 is instrumented with a single reed switch. It fires for the
+closed, half-open and fully open position, but does not allow do
+distinguish the state of the drawer without additional information.<br>
+<br>
+The acceleration sensors may allow to assess if an element of
+furniture is used, and whether it may be opened or closed.<br>
+<br>
+<table border="0" cellpadding="2"
+       cellspacing="2" style=" text-align: left; width: 100%;">
+    <tbody>
+    <tr>
+        <td style="vertical-align: top; text-align: center;"><img
+                alt="reed" src="img/reed.jpg"
+                style=" width: 300px; height: 225px;"><br>
+            <div>One reed switch placed on the dishwasher. When the
+                dishwasher is closed the switch (up) is activated by a
+                magnet placed on the dishwasher door (down), yielding a
+                binary signal indicating if the door is open or closed.<br>
+            </div>
+        </td>
+        <td style="vertical-align: top; text-align: center;"><img
+                alt="reed" src="img/Reed_Switch_Configuration.png"
+                style=" width: 500px; height: 369px;"><br>
+            <div>Placement of the reed switches on the furniture<br>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div style="text-align: center;"><img alt="usb ambient sensor" src="img/usb_sensor.jpg" style=" width: 300px; height:
+        225px;"><br>
+    3D acceleration sensor attached to the dishwasher.<br>
+</div>
+<h3>Annotations<br>
+</h3>
+<p style="text-align: center;"><img alt="Annotations" src="img/label.png" style=" width: 600px; height:
+        375px;"><br>
+</p>
+<p style="text-align: left;"><br>
+</p>
+<p style="text-align: left;">The annotations are done on five
+    &#8216;tracks&#8217;. One track contains modes of locomotion (e.g. sitting,
+    standing, walking). Two other tracks indicate the actions of the
+    left and right hand (e.g. reach, grasp, release), and to which
+    object they apply (e.g. milk, switch, door). <br>
+    The fourth track indicates the high level activities (e.g. prepare
+    sandwich). The high level activities relate to the situations
+    indicated in the description of the ADL runs as follows (in
+    parenthesis the number of the situations indicated above):
+    relaxing (1, 9), early morning (2, 3), coffee time (4, 5),
+    sandwich time (6, 7), cleanup (8).<br>
+</p>
+<p style="text-align: left;">The mid-level gesture annotations is
+    generated automatically from the low-level hand actions. It
+    comprises coarser characterization of the user's activities. For
+    instance the low-level annotations "reach door" and "open door"
+    are combined into a single "open door" mid-level annotation. Here,
+    the mid-level annotations comprise actions of the left and right
+    hand indiscriminately. However, in practice, the users mostly
+    interacted with the environment with their right hand. We
+    recommend to use the mid-level annotations in first attempts to
+    use this dataset.<br>
+</p>
+<h3>Files</h3>
+The dataset contains the following files:<br>
+<ul>
+    <li><span style="font-style: italic;">dataset/S&lt;n&gt;-ADL&lt;i&gt;.dat</span>:
+        i's recording of user n in the activity of daily living run
+    </li>
+    <li><span style="font-style: italic;">dataset/S&lt;n&gt;-Drill.dat</span>:
+        recording of user n in the drill run
+    </li>
+    <li><span style="font-style: italic;">dataset/column_names.txt</span>:
+        explanations of the columns in the data file<br>
+    </li>
+    <li><span style="font-style: italic;">dataset/label_legend.txt</span>:
+        meaning of the label number
+    </li>
+</ul>
+Documentation is in the /doc directory:<br>
+<ul>
+    <li><span style="font-style: italic;">doc/documentation.html</span>:
+        this file
+    </li>
+    <li><span style="font-style: italic;">doc/dataset_statistics.pdf</span>:
+        basic statistics on the locomotion and mid-level gesture
+        instances
+    </li>
+    <li><span style="font-style: italic;">doc/INSS_cameraready.pdf</span>:
+        publication [1]
+    </li>
+    <li><span style="font-style: italic;">doc/OPPORTUNITY_D5.1.pdf</span>:
+        technical details on the recording
+    </li>
+    <li><span style="font-style: italic;">doc/ActivityRecognitionBaselines.pdf</span>:
+        report of the baseline activity recognition accuracy with the
+        methods described in reference [2]. The file includes the
+        baseline results for the original OPPORTUNITY Activity
+        Recognition Challenge dataset, and the present dataset. Note the
+        slight differences in baseline values that result from the
+        improved annotations and channel alignments.
+    </li>
+    <li><span style="font-style: italic;">mlgesture_instances.tex</span>:
+        count of instances of mid-level gestures<br>
+    </li>
+    <li><span style="font-style: italic;">locomotion_instances.tex</span>:
+        count of instances of modes of locomotion<br>
+    </li>
+</ul>
+Scripts are in the /scripts directory:<br>
+<ul>
+    <li><span style="font-style: italic;">scripts/DataExplorer/</span>:
+        dataset visualization tool, allows to select class ID, sensor
+        channels and instances and visualize the signals. See the readme
+        file for more information.
+    </li>
+    <li><span style="font-style: italic;">scripts/benchmark/</span>:
+        baseline benchmarks as published in [2]. See readme file for
+        more information.<br>
+    </li>
+</ul>
+<h3>Applications</h3>
+This dataset offers a rich playground to assess methods such as,
+e.g: <br>
+<ul>
+    <li>Classification, (semi-) supervised machine learning</li>
+    <li>Automatic segmentation</li>
+    <li>Unsupervised structure discovery</li>
+    <li>Data imputation</li>
+    <li>Multi-modal sensor fusion</li>
+    <li>Sensor network research</li>
+    <li>Transfer learning, multitask learning</li>
+    <li>Sensor selection</li>
+    <li>Feature extraction</li>
+    <li>Classifier calibration and adaptation<br>
+    </li>
+    <li>...</li>
+</ul>
+<h3>Notes about data and label quality</h3>
+Recording a complex multimodal dataset implies data losses and
+sensor data alignment challenges. These are issues which are common
+in real-world deployment of complex multimodal sensor systems. This
+dataset aims to captures these real-world issues so that one can
+devise and assess robust activity recognition methods. Consequently
+we limited the amount of post-processing of the data. The only
+post-processing that was performed is the alignment of sensor
+channels into a common matrix format (i.e. the multiple independent
+devices recording data were synchronized in post-processing), and
+unit conversion of the sensor data. In particular, there is no data
+imputation to compensate for missing data. <br>
+<h4>Body-worn sensors</h4>
+Among body-worn sensors, the data from the inertial measurement
+units are of highest quality. They were acquired with a wired
+system, leading to little to no data loss. The placement of the
+sensors is very reproducible among users and recording runs, as the
+sensors were integrated within a jacket. We would recommend to first
+consider this data for the high quality provided.<br>
+<br>
+The 3D acceleration sensors suffer from some data losses as the
+sensors are wireless. This allows to study imputation techniques,
+and the larger number of these sensors allows to investigate data
+fusion methods to compensate for data losses.<br>
+<br>
+The tags providing indoor 3D localization are extremely noisy. We
+recommend to use this information only after careful assessment.<br>
+<h4>Object sensors</h4>
+The sensors in the objects suffer from some data loss as they are
+wireless. Especially the objects placed in the dishwasher in the
+"cleaning" phase of the ADL runs suffer from more data losses due to
+the occlusions when the dishwasher is closed.<br>
+<h4>Ambient sensors</h4>
+The ambient sensors suffer from little to no data loss as they were
+acquired by a wired system.<br>
+<h4>Annotation quality</h4>
+<p>The activities were executed in a very realistic manner. This
+    leads, for instance, to interleaving or merging of activities,
+    which are challenging to annotate. </p>
+Therefore, there may be jitter between the annotated time spans of
+an activity and its true time span. We nevertheless did the best to
+ensure consistency in the annotation strategy.<br>
+<br>
+The boundaries of high-level activities cannot be pinpointed to a
+specific time due to the way users were allowed to interleave
+activities (e.g. finishing to eat the sandwich while already
+starting the cleanup). Rather one should assume a smoother
+transition between the high level activities.<br>
+The low-level action annotations are also hard to annotate due to
+their extremely short duration. <br>
+The mid-level gesture annotations are automatically generated from
+the low-level gesture annotations. They combine multiple low-level
+annotations in a single one of longer duration. For instance, "reach
+door" followed by "open door" (low-level annotation) is combined
+into a single "open door" mid-level annotation. These annotations
+are recommended for a first assessment of methods as they are last
+longer than the low-level&nbsp; actions and thus are less sensitive
+to annotation jitter.<br>
+The annotation of modes of locomotion is also challenging in this
+environment as the way a user moves in the kitchen consists often of
+very short gait sequences, sometimes consisting of even only a
+single step.<br>
+<h4>Other remarks and recommendations </h4>
+The sensors were recorded by multiple independent systems and
+aligned in post-processing. Alignment was done in the most careful
+manner, however the alignment accuracy remains limited due to
+technical data acquisition reasons. We recommend the users of this
+dataset to keep in mind that there may be a jitter between the
+channels of sensors acquired by different systems (e.g. between a
+wireless sensor on body and a wired inertial measurement unit on
+body). This jitter may be of the order of 100ms.<br>
+<br>
+Note that the segmentation of human activities is - to some extent -
+a subjective process. Therefore there may be a jitter of a couple of
+hundreds of milliseconds between what two observers would annotate.
+The possibility of label jitter must be kept in mind in the
+evaluation of activity recognition methods. <br>
+<br>
+We recommend first users of this dataset to consider the subset of
+data used for the OPPORTUNITY Activity Recognition Challenge at
+first.<br>
+<br>
+<h3>OPPORTUNITY Activity Recognition Challenge subset<br>
+</h3>
+The "<a href="http://opportunity-project.eu/challenge">OPPORTUNITY
+    Activity Recognition Challenge</a>" organized for the <span
+        style="font-style: italic;">2011 IEEE conf on Systems, Man and
+      Cybernetics Workshop on "<span style="text-decoration: underline;">Robust
+
+
+
+
+
+        machine learning techniques for human activity recognition</span>"</span>
+used a subset of this dataset.<br>
+<br>
+This subset contains only the on-body sensors without quaternion
+data, and the annotations of modes of locomotion and mid-level
+gestures.<br>
+<br>
+Specifically, the following columns were used for the challenge:
+1-37, 38-46, 51-59, 64-72, 77-85, 90-98, 103-134, 244, 250.<br>
+<br>
+Note that some labels have been improved since the challenge, as
+well as the synchronization between the sensor channels. This
+results in slightly different files compared to the original
+challenge, although it does not influence the baseline benchmarks in
+any significant manner. <br>
+The baseline performance results are provided in <span
+        style="font-style: italic;">doc/ActivityRecognitionBaselines.pdf</span>
+for the original challenge dataset as well as this release.<br>
+<h3>How to start?</h3>
+For activity recognition using on-body sensors we recommend to start
+with the subset of data used for the OPPORTUNITY Activity
+Recognition Challenge. We further recommend to consider at first the
+data from the inertial measurement units as their quality is
+highest, before considering the other modalities which may require
+data imputation strategies.<br>
+<h3>Baseline benchmarks<br>
+</h3>
+Baseline benchmarks for the OPPORTUNITY Activity Recognition
+Challenge subset of the dataset are available in reference [2].
+Scripts to replicate the benchmarks are provided in <span
+        style="font-style: italic;">scripts/benchmark</span>.<br>
+<h2 class="small-heading"><b>Attribute Information:</b></h2>
+<h4></h4>
+<p class="normal">Each .dat file contains a matrix of data in text
+    format. Each line contains the sensor data sampled at a given time
+    (sample rate: 30Hz). There are 250 columns. The first contains the
+    time at which the data was sampled. The last 7 columns contain the
+    label (attribute). The other columns contain the data channels of
+    the sensors. Missing data is indicated by "NaN" instead of a
+    number in the matrix entry.<br>
+</p>
+Column: 1 MILLISEC<br>
+Column: 2 Accelerometer RKN^ accX; value = round(original_value),
+unit = milli g<br>
+Column: 3 Accelerometer RKN^ accY; value = round(original_value),
+unit = milli g<br>
+Column: 4 Accelerometer RKN^ accZ; value = round(original_value),
+unit = milli g<br>
+Column: 5 Accelerometer HIP accX; value = round(original_value),
+unit = milli g<br>
+Column: 6 Accelerometer HIP accY; value = round(original_value),
+unit = milli g<br>
+Column: 7 Accelerometer HIP accZ; value = round(original_value),
+unit = milli g<br>
+Column: 8 Accelerometer LUA^ accX; value = round(original_value),
+unit = milli g<br>
+Column: 9 Accelerometer LUA^ accY; value = round(original_value),
+unit = milli g<br>
+Column: 10 Accelerometer LUA^ accZ; value = round(original_value),
+unit = milli g<br>
+Column: 11 Accelerometer RUA_ accX; value = round(original_value),
+unit = milli g<br>
+Column: 12 Accelerometer RUA_ accY; value = round(original_value),
+unit = milli g<br>
+Column: 13 Accelerometer RUA_ accZ; value = round(original_value),
+unit = milli g<br>
+Column: 14 Accelerometer LH accX; value = round(original_value),
+unit = milli g<br>
+Column: 15 Accelerometer LH accY; value = round(original_value),
+unit = milli g<br>
+Column: 16 Accelerometer LH accZ; value = round(original_value),
+unit = milli g<br>
+Column: 17 Accelerometer BACK accX; value = round(original_value),
+unit = milli g<br>
+Column: 18 Accelerometer BACK accY; value = round(original_value),
+unit = milli g<br>
+Column: 19 Accelerometer BACK accZ; value = round(original_value),
+unit = milli g<br>
+Column: 20 Accelerometer RKN_ accX; value = round(original_value),
+unit = milli g<br>
+Column: 21 Accelerometer RKN_ accY; value = round(original_value),
+unit = milli g<br>
+Column: 22 Accelerometer RKN_ accZ; value = round(original_value),
+unit = milli g<br>
+Column: 23 Accelerometer RWR accX; value = round(original_value),
+unit = milli g<br>
+Column: 24 Accelerometer RWR accY; value = round(original_value),
+unit = milli g<br>
+Column: 25 Accelerometer RWR accZ; value = round(original_value),
+unit = milli g<br>
+Column: 26 Accelerometer RUA^ accX; value = round(original_value),
+unit = milli g<br>
+Column: 27 Accelerometer RUA^ accY; value = round(original_value),
+unit = milli g<br>
+Column: 28 Accelerometer RUA^ accZ; value = round(original_value),
+unit = milli g<br>
+Column: 29 Accelerometer LUA_ accX; value = round(original_value),
+unit = milli g<br>
+Column: 30 Accelerometer LUA_ accY; value = round(original_value),
+unit = milli g<br>
+Column: 31 Accelerometer LUA_ accZ; value = round(original_value),
+unit = milli g<br>
+Column: 32 Accelerometer LWR accX; value = round(original_value),
+unit = milli g<br>
+Column: 33 Accelerometer LWR accY; value = round(original_value),
+unit = milli g<br>
+Column: 34 Accelerometer LWR accZ; value = round(original_value),
+unit = milli g<br>
+Column: 35 Accelerometer RH accX; value = round(original_value),
+unit = milli g<br>
+Column: 36 Accelerometer RH accY; value = round(original_value),
+unit = milli g<br>
+Column: 37 Accelerometer RH accZ; value = round(original_value),
+unit = milli g<br>
+Column: 38 InertialMeasurementUnit BACK accX; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 39 InertialMeasurementUnit BACK accY; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 40 InertialMeasurementUnit BACK accZ; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 41 InertialMeasurementUnit BACK gyroX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 42 InertialMeasurementUnit BACK gyroY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 43 InertialMeasurementUnit BACK gyroZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 44 InertialMeasurementUnit BACK magneticX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 45 InertialMeasurementUnit BACK magneticY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 46 InertialMeasurementUnit BACK magneticZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 47 InertialMeasurementUnit BACK Quaternion1; value =
+round(original_value * 1000), unit = none<br>
+Column: 48 InertialMeasurementUnit BACK Quaternion2; value =
+round(original_value * 1000), unit = none<br>
+Column: 49 InertialMeasurementUnit BACK Quaternion3; value =
+round(original_value * 1000), unit = none<br>
+Column: 50 InertialMeasurementUnit BACK Quaternion4; value =
+round(original_value * 1000), unit = none<br>
+Column: 51 InertialMeasurementUnit RUA accX; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 52 InertialMeasurementUnit RUA accY; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 53 InertialMeasurementUnit RUA accZ; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 54 InertialMeasurementUnit RUA gyroX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 55 InertialMeasurementUnit RUA gyroY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 56 InertialMeasurementUnit RUA gyroZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 57 InertialMeasurementUnit RUA magneticX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 58 InertialMeasurementUnit RUA magneticY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 59 InertialMeasurementUnit RUA magneticZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 60 InertialMeasurementUnit RUA Quaternion1; value =
+round(original_value * 1000), unit = none<br>
+Column: 61 InertialMeasurementUnit RUA Quaternion2; value =
+round(original_value * 1000), unit = none<br>
+Column: 62 InertialMeasurementUnit RUA Quaternion3; value =
+round(original_value * 1000), unit = none<br>
+Column: 63 InertialMeasurementUnit RUA Quaternion4; value =
+round(original_value * 1000), unit = none<br>
+Column: 64 InertialMeasurementUnit RLA accX; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 65 InertialMeasurementUnit RLA accY; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 66 InertialMeasurementUnit RLA accZ; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 67 InertialMeasurementUnit RLA gyroX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 68 InertialMeasurementUnit RLA gyroY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 69 InertialMeasurementUnit RLA gyroZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 70 InertialMeasurementUnit RLA magneticX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 71 InertialMeasurementUnit RLA magneticY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 72 InertialMeasurementUnit RLA magneticZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 73 InertialMeasurementUnit RLA Quaternion1; value =
+round(original_value * 1000), unit = none<br>
+Column: 74 InertialMeasurementUnit RLA Quaternion2; value =
+round(original_value * 1000), unit = none<br>
+Column: 75 InertialMeasurementUnit RLA Quaternion3; value =
+round(original_value * 1000), unit = none<br>
+Column: 76 InertialMeasurementUnit RLA Quaternion4; value =
+round(original_value * 1000), unit = none<br>
+Column: 77 InertialMeasurementUnit LUA accX; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 78 InertialMeasurementUnit LUA accY; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 79 InertialMeasurementUnit LUA accZ; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 80 InertialMeasurementUnit LUA gyroX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 81 InertialMeasurementUnit LUA gyroY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 82 InertialMeasurementUnit LUA gyroZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 83 InertialMeasurementUnit LUA magneticX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 84 InertialMeasurementUnit LUA magneticY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 85 InertialMeasurementUnit LUA magneticZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 86 InertialMeasurementUnit LUA Quaternion1; value =
+round(original_value * 1000), unit = none<br>
+Column: 87 InertialMeasurementUnit LUA Quaternion2; value =
+round(original_value * 1000), unit = none<br>
+Column: 88 InertialMeasurementUnit LUA Quaternion3; value =
+round(original_value * 1000), unit = none<br>
+Column: 89 InertialMeasurementUnit LUA Quaternion4; value =
+round(original_value * 1000), unit = none<br>
+Column: 90 InertialMeasurementUnit LLA accX; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 91 InertialMeasurementUnit LLA accY; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 92 InertialMeasurementUnit LLA accZ; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 93 InertialMeasurementUnit LLA gyroX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 94 InertialMeasurementUnit LLA gyroY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 95 InertialMeasurementUnit LLA gyroZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 96 InertialMeasurementUnit LLA magneticX; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 97 InertialMeasurementUnit LLA magneticY; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 98 InertialMeasurementUnit LLA magneticZ; value =
+round(original_value * 1000), unit = unknown<br>
+Column: 99 InertialMeasurementUnit LLA Quaternion1; value =
+round(original_value * 1000), unit = none<br>
+Column: 100 InertialMeasurementUnit LLA Quaternion2; value =
+round(original_value * 1000), unit = none<br>
+Column: 101 InertialMeasurementUnit LLA Quaternion3; value =
+round(original_value * 1000), unit = none<br>
+Column: 102 InertialMeasurementUnit LLA Quaternion4; value =
+round(original_value * 1000), unit = none<br>
+Column: 103 InertialMeasurementUnit L-SHOE EuX; value =
+round(original_value), unit = degrees<br>
+Column: 104 InertialMeasurementUnit L-SHOE EuY; value =
+round(original_value), unit = degrees<br>
+Column: 105 InertialMeasurementUnit L-SHOE EuZ; value =
+round(original_value), unit = degrees<br>
+Column: 106 InertialMeasurementUnit L-SHOE Nav_Ax; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 107 InertialMeasurementUnit L-SHOE Nav_Ay; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 108 InertialMeasurementUnit L-SHOE Nav_Az; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 109 InertialMeasurementUnit L-SHOE Body_Ax; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 110 InertialMeasurementUnit L-SHOE Body_Ay; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 111 InertialMeasurementUnit L-SHOE Body_Az; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 112 InertialMeasurementUnit L-SHOE AngVelBodyFrameX; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 113 InertialMeasurementUnit L-SHOE AngVelBodyFrameY; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 114 InertialMeasurementUnit L-SHOE AngVelBodyFrameZ; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 115 InertialMeasurementUnit L-SHOE AngVelNavFrameX; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 116 InertialMeasurementUnit L-SHOE AngVelNavFrameY; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 117 InertialMeasurementUnit L-SHOE AngVelNavFrameZ; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 118 InertialMeasurementUnit L-SHOE Compass; value =
+round(original_value), unit = degrees<br>
+Column: 119 InertialMeasurementUnit R-SHOE EuX; value =
+round(original_value), unit = degrees<br>
+Column: 120 InertialMeasurementUnit R-SHOE EuY; value =
+round(original_value), unit = degrees<br>
+Column: 121 InertialMeasurementUnit R-SHOE EuZ; value =
+round(original_value), unit = degrees<br>
+Column: 122 InertialMeasurementUnit R-SHOE Nav_Ax; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 123 InertialMeasurementUnit R-SHOE Nav_Ay; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 124 InertialMeasurementUnit R-SHOE Nav_Az; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 125 InertialMeasurementUnit R-SHOE Body_Ax; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 126 InertialMeasurementUnit R-SHOE Body_Ay; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 127 InertialMeasurementUnit R-SHOE Body_Az; value =
+round(original_value / 9.8 * 1000), unit = milli g<br>
+Column: 128 InertialMeasurementUnit R-SHOE AngVelBodyFrameX; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 129 InertialMeasurementUnit R-SHOE AngVelBodyFrameY; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 130 InertialMeasurementUnit R-SHOE AngVelBodyFrameZ; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 131 InertialMeasurementUnit R-SHOE AngVelNavFrameX; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 132 InertialMeasurementUnit R-SHOE AngVelNavFrameY; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 133 InertialMeasurementUnit R-SHOE AngVelNavFrameZ; value =
+round(original_value * 1000), unit = mm/s<br>
+Column: 134 InertialMeasurementUnit R-SHOE Compass; value =
+round(original_value), unit = degrees<br>
+Column: 135 Accelerometer CUP accX; value = round(original_value),
+unit = milli g<br>
+Column: 136 Accelerometer CUP accX; value = round(original_value),
+unit = milli g<br>
+Column: 137 Accelerometer CUP accX; value = round(original_value),
+unit = milli g<br>
+Column: 138 Accelerometer CUP gyroX; value = round(original_value),
+unit = unknown<br>
+Column: 139 Accelerometer CUP gyroY; value = round(original_value),
+unit = unknown<br>
+Column: 140 Accelerometer SALAMI accX; value =
+round(original_value), unit = milli g<br>
+Column: 141 Accelerometer SALAMI accX; value =
+round(original_value), unit = milli g<br>
+Column: 142 Accelerometer SALAMI accX; value =
+round(original_value), unit = milli g<br>
+Column: 143 Accelerometer SALAMI gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 144 Accelerometer SALAMI gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 145 Accelerometer WATER accX; value = round(original_value),
+unit = milli g<br>
+Column: 146 Accelerometer WATER accX; value = round(original_value),
+unit = milli g<br>
+Column: 147 Accelerometer WATER accX; value = round(original_value),
+unit = milli g<br>
+Column: 148 Accelerometer WATER gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 149 Accelerometer WATER gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 150 Accelerometer CHEESE accX; value =
+round(original_value), unit = milli g<br>
+Column: 151 Accelerometer CHEESE accX; value =
+round(original_value), unit = milli g<br>
+Column: 152 Accelerometer CHEESE accX; value =
+round(original_value), unit = milli g<br>
+Column: 153 Accelerometer CHEESE gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 154 Accelerometer CHEESE gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 155 Accelerometer BREAD accX; value = round(original_value),
+unit = milli g<br>
+Column: 156 Accelerometer BREAD accX; value = round(original_value),
+unit = milli g<br>
+Column: 157 Accelerometer BREAD accX; value = round(original_value),
+unit = milli g<br>
+Column: 158 Accelerometer BREAD gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 159 Accelerometer BREAD gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 160 Accelerometer KNIFE1 accX; value =
+round(original_value), unit = milli g<br>
+Column: 161 Accelerometer KNIFE1 accX; value =
+round(original_value), unit = milli g<br>
+Column: 162 Accelerometer KNIFE1 accX; value =
+round(original_value), unit = milli g<br>
+Column: 163 Accelerometer KNIFE1 gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 164 Accelerometer KNIFE1 gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 165 Accelerometer MILK accX; value = round(original_value),
+unit = milli g<br>
+Column: 166 Accelerometer MILK accX; value = round(original_value),
+unit = milli g<br>
+Column: 167 Accelerometer MILK accX; value = round(original_value),
+unit = milli g<br>
+Column: 168 Accelerometer MILK gyroX; value = round(original_value),
+unit = unknown<br>
+Column: 169 Accelerometer MILK gyroY; value = round(original_value),
+unit = unknown<br>
+Column: 170 Accelerometer SPOON accX; value = round(original_value),
+unit = milli g<br>
+Column: 171 Accelerometer SPOON accX; value = round(original_value),
+unit = milli g<br>
+Column: 172 Accelerometer SPOON accX; value = round(original_value),
+unit = milli g<br>
+Column: 173 Accelerometer SPOON gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 174 Accelerometer SPOON gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 175 Accelerometer SUGAR accX; value = round(original_value),
+unit = milli g<br>
+Column: 176 Accelerometer SUGAR accX; value = round(original_value),
+unit = milli g<br>
+Column: 177 Accelerometer SUGAR accX; value = round(original_value),
+unit = milli g<br>
+Column: 178 Accelerometer SUGAR gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 179 Accelerometer SUGAR gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 180 Accelerometer KNIFE2 accX; value =
+round(original_value), unit = milli g<br>
+Column: 181 Accelerometer KNIFE2 accX; value =
+round(original_value), unit = milli g<br>
+Column: 182 Accelerometer KNIFE2 accX; value =
+round(original_value), unit = milli g<br>
+Column: 183 Accelerometer KNIFE2 gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 184 Accelerometer KNIFE2 gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 185 Accelerometer PLATE accX; value = round(original_value),
+unit = milli g<br>
+Column: 186 Accelerometer PLATE accX; value = round(original_value),
+unit = milli g<br>
+Column: 187 Accelerometer PLATE accX; value = round(original_value),
+unit = milli g<br>
+Column: 188 Accelerometer PLATE gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 189 Accelerometer PLATE gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 190 Accelerometer GLASS accX; value = round(original_value),
+unit = milli g<br>
+Column: 191 Accelerometer GLASS accX; value = round(original_value),
+unit = milli g<br>
+Column: 192 Accelerometer GLASS accX; value = round(original_value),
+unit = milli g<br>
+Column: 193 Accelerometer GLASS gyroX; value =
+round(original_value), unit = unknown<br>
+Column: 194 Accelerometer GLASS gyroY; value =
+round(original_value), unit = unknown<br>
+Column: 195 REED SWITCH DISHWASHER S1; value = original_value, unit
+= logical (0/1)<br>
+Column: 196 REED SWITCH FRIDGE S3; value = original_value, unit =
+logical (0/1)<br>
+Column: 197 REED SWITCH FRIDGE S2; value = original_value, unit =
+logical (0/1)<br>
+Column: 198 REED SWITCH FRIDGE S1; value = original_value, unit =
+logical (0/1)<br>
+Column: 199 REED SWITCH MIDDLEDRAWER S1; value = original_value,
+unit = logical (0/1)<br>
+Column: 200 REED SWITCH MIDDLEDRAWER S2; value = original_value,
+unit = logical (0/1)<br>
+Column: 201 REED SWITCH MIDDLEDRAWER S3; value = original_value,
+unit = logical (0/1)<br>
+Column: 202 REED SWITCH LOWERDRAWER S3; value = original_value, unit
+= logical (0/1)<br>
+Column: 203 REED SWITCH LOWERDRAWER S2; value = original_value, unit
+= logical (0/1)<br>
+Column: 204 REED SWITCH UPPERDRAWER; value = original_value, unit =
+logical (0/1)<br>
+Column: 205 REED SWITCH DISHWASHER S3; value = original_value, unit
+= logical (0/1)<br>
+Column: 206 REED SWITCH LOWERDRAWER S1; value = original_value, unit
+= logical (0/1)<br>
+Column: 207 REED SWITCH DISHWASHER S2; value = original_value, unit
+= logical (0/1)<br>
+Column: 208 Accelerometer DOOR1 accX; value = round(original_value),
+unit = milli g<br>
+Column: 209 Accelerometer DOOR1 accY; value = round(original_value),
+unit = milli g<br>
+Column: 210 Accelerometer DOOR1 accZ; value = round(original_value),
+unit = milli g<br>
+Column: 211 Accelerometer LAZYCHAIR accX; value =
+round(original_value), unit = milli g<br>
+Column: 212 Accelerometer LAZYCHAIR accY; value =
+round(original_value), unit = milli g<br>
+Column: 213 Accelerometer LAZYCHAIR accZ; value =
+round(original_value), unit = milli g<br>
+Column: 214 Accelerometer DOOR2 accX; value = round(original_value),
+unit = milli g<br>
+Column: 215 Accelerometer DOOR2 accY; value = round(original_value),
+unit = milli g<br>
+Column: 216 Accelerometer DOOR2 accZ; value = round(original_value),
+unit = milli g<br>
+Column: 217 Accelerometer DISHWASHER accX; value =
+round(original_value), unit = milli g<br>
+Column: 218 Accelerometer DISHWASHER accY; value =
+round(original_value), unit = milli g<br>
+Column: 219 Accelerometer DISHWASHER accZ; value =
+round(original_value), unit = milli g<br>
+Column: 220 Accelerometer UPPERDRAWER accX; value =
+round(original_value), unit = milli g<br>
+Column: 221 Accelerometer UPPERDRAWER accY; value =
+round(original_value), unit = milli g<br>
+Column: 222 Accelerometer UPPERDRAWER accZ; value =
+round(original_value), unit = milli g<br>
+Column: 223 Accelerometer LOWERDRAWER accX; value =
+round(original_value), unit = milli g<br>
+Column: 224 Accelerometer LOWERDRAWER accY; value =
+round(original_value), unit = milli g<br>
+Column: 225 Accelerometer LOWERDRAWER accZ; value =
+round(original_value), unit = milli g<br>
+Column: 226 Accelerometer MIDDLEDRAWER accX; value =
+round(original_value), unit = milli g<br>
+Column: 227 Accelerometer MIDDLEDRAWER accY; value =
+round(original_value), unit = milli g<br>
+Column: 228 Accelerometer MIDDLEDRAWER accZ; value =
+round(original_value), unit = milli g<br>
+Column: 229 Accelerometer FRIDGE accX; value =
+round(original_value), unit = milli g<br>
+Column: 230 Accelerometer FRIDGE accY; value =
+round(original_value), unit = milli g<br>
+Column: 231 Accelerometer FRIDGE accZ; value =
+round(original_value), unit = milli g<br>
+Column: 232 LOCATION TAG1 X; value = round(original_value), unit =
+millimetres<br>
+Column: 233 LOCATION TAG1 Y; value = round(original_value), unit =
+millimetres<br>
+Column: 234 LOCATION TAG1 Z; value = round(original_value), unit =
+millimetres<br>
+Column: 235 LOCATION TAG2 X; value = round(original_value), unit =
+millimetres<br>
+Column: 236 LOCATION TAG2 Y; value = round(original_value), unit =
+millimetres<br>
+Column: 237 LOCATION TAG2 Z; value = round(original_value), unit =
+millimetres<br>
+Column: 238 LOCATION TAG3 X; value = round(original_value), unit =
+millimetres<br>
+Column: 239 LOCATION TAG3 Y; value = round(original_value), unit =
+millimetres<br>
+Column: 240 LOCATION TAG3 Z; value = round(original_value), unit =
+millimetres<br>
+Column: 241 LOCATION TAG4 X; value = round(original_value), unit =
+millimetres<br>
+Column: 242 LOCATION TAG4 Y; value = round(original_value), unit =
+millimetres<br>
+Column: 243 LOCATION TAG4 Z; value = round(original_value), unit =
+millimetres
+<p class="normal">Label columns: <br>
+    <br>
+    Column: 244 Locomotion<br>
+    Column: 245 HL_Activity<br>
+    Column: 246 LL_Left_Arm<br>
+    Column: 247 LL_Left_Arm_Object<br>
+    Column: 248 LL_Right_Arm<br>
+    Column: 249 LL_Right_Arm_Object<br>
+    Column: 250 ML_Both_Arms<br>
+</p>
+<p class="normal">The meaning of the Locomotion labels is as
+    follows:<br>
+    1&nbsp;&nbsp; -&nbsp;&nbsp; Locomotion&nbsp;&nbsp; -&nbsp;&nbsp;
+    Stand<br>
+    2&nbsp;&nbsp; -&nbsp;&nbsp; Locomotion&nbsp;&nbsp; -&nbsp;&nbsp;
+    Walk<br>
+    4&nbsp;&nbsp; -&nbsp;&nbsp; Locomotion&nbsp;&nbsp; -&nbsp;&nbsp;
+    Sit<br>
+    5&nbsp;&nbsp; -&nbsp;&nbsp; Locomotion&nbsp;&nbsp; -&nbsp;&nbsp;
+    Lie<br>
+</p>
+<p class="normal">The meaning of the low-level action verb is as
+    follows:<br>
+</p>
+<p class="normal">201&nbsp;&nbsp; -&nbsp;&nbsp;
+    LL_Left_Arm&nbsp;&nbsp; -&nbsp;&nbsp; unlock<br>
+    202&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; stir<br>
+    203&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; lock<br>
+    204&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; close<br>
+    205&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; reach<br>
+    206&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; open<br>
+    207&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; sip<br>
+    208&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; clean<br>
+    209&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; bite<br>
+    210&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; cut<br>
+    211&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; spread<br>
+    212&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; release<br>
+    213&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; move<br>
+    401&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; unlock<br>
+    402&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; stir<br>
+    403&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; lock<br>
+    404&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; close<br>
+    405&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; reach<br>
+    406&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; open<br>
+    407&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; sip<br>
+    408&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; clean<br>
+    409&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; bite<br>
+    410&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; cut<br>
+    411&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; spread<br>
+    412&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; release<br>
+    413&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm&nbsp;&nbsp;
+    -&nbsp;&nbsp; move<br>
+</p>
+<p class="normal">The meaning of the low-level action object is as
+    follows:</p>
+<p class="normal">301&nbsp;&nbsp; -&nbsp;&nbsp;
+    LL_Left_Arm_Object&nbsp;&nbsp; -&nbsp;&nbsp; Bottle<br>
+    302&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Salami<br>
+    303&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Bread<br>
+    304&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Sugar<br>
+    305&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Dishwasher<br>
+    306&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Switch<br>
+    307&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Milk<br>
+    308&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Drawer3 (lower)<br>
+    309&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Spoon<br>
+    310&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Knife cheese<br>
+    311&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Drawer2 (middle)<br>
+    312&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Table<br>
+    313&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Glass<br>
+    314&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Cheese<br>
+    315&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Chair<br>
+    316&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Door1<br>
+    317&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Door2<br>
+    318&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Plate<br>
+    319&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Drawer1 (top)<br>
+    320&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Fridge<br>
+    321&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Cup<br>
+    322&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Knife salami<br>
+    323&nbsp;&nbsp; -&nbsp;&nbsp; LL_Left_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Lazychair<br>
+    501&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Bottle<br>
+    502&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Salami<br>
+    503&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Bread<br>
+    504&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Sugar<br>
+    505&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Dishwasher<br>
+    506&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Switch<br>
+    507&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Milk<br>
+    508&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Drawer3 (lower)<br>
+    509&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Spoon<br>
+    510&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Knife cheese<br>
+    511&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Drawer2 (middle)<br>
+    512&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Table<br>
+    513&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Glass<br>
+    514&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Cheese<br>
+    515&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Chair<br>
+    516&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Door1<br>
+    517&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Door2<br>
+    518&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Plate<br>
+    519&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Drawer1 (top)<br>
+    520&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Fridge<br>
+    521&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Cup<br>
+    522&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Knife salami<br>
+    523&nbsp;&nbsp; -&nbsp;&nbsp; LL_Right_Arm_Object&nbsp;&nbsp;
+    -&nbsp;&nbsp; Lazychair<br>
+</p>
+<p class="normal">The meaning of the mid-level labels is as follows:</p>
+<p class="normal">406516&nbsp;&nbsp; -&nbsp;&nbsp;
+    ML_Both_Arms&nbsp;&nbsp; -&nbsp;&nbsp; Open Door 1<br>
+    406517&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Open Door 2<br>
+    404516&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Close Door 1<br>
+    404517&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Close Door 2<br>
+    406520&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Open Fridge<br>
+    404520&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Close Fridge<br>
+    406505&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Open Dishwasher<br>
+    404505&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Close Dishwasher<br>
+    406519&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Open Drawer 1<br>
+    404519&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Close Drawer 1<br>
+    406511&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Open Drawer 2<br>
+    404511&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Close Drawer 2<br>
+    406508&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Open Drawer 3<br>
+    404508&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Close Drawer 3<br>
+    408512&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Clean Table<br>
+    407521&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Drink from Cup<br>
+    405506&nbsp;&nbsp; -&nbsp;&nbsp; ML_Both_Arms&nbsp;&nbsp;
+    -&nbsp;&nbsp; Toggle Switch<br>
+</p>
+<p class="normal">The meaning of the high-level activities is as
+    follows:<br>
+</p>
+<p class="normal">101&nbsp;&nbsp; -&nbsp;&nbsp;
+    HL_Activity&nbsp;&nbsp; -&nbsp;&nbsp; Relaxing<br>
+    102&nbsp;&nbsp; -&nbsp;&nbsp; HL_Activity&nbsp;&nbsp;
+    -&nbsp;&nbsp; Coffee time<br>
+    103&nbsp;&nbsp; -&nbsp;&nbsp; HL_Activity&nbsp;&nbsp;
+    -&nbsp;&nbsp; Early morning<br>
+    104&nbsp;&nbsp; -&nbsp;&nbsp; HL_Activity&nbsp;&nbsp;
+    -&nbsp;&nbsp; Cleanup<br>
+    105&nbsp;&nbsp; -&nbsp;&nbsp; HL_Activity&nbsp;&nbsp;
+    -&nbsp;&nbsp; Sandwich time</p>
+<p class="normal"></p>
+<h2>License</h2>
+Use of this dataset in publications must be acknowledged by
+referencing one of the following publications: [1] or [11]. <br>
+We recommend to refer to this dataset as the "OPPORTUNITY Activity
+Recognition Dataset" in publications.<br>
+We also appreciate if you drop us an email (daniel.roggen@ieee.org) to
+inform us of any publication using this dataset, so we can point to
+your publication on our webpage.<br>
+<br>
+Reference [1] details the overall dataset, the scenario, the
+multimodality and sensor networking aspects of the setup, quality
+metrics, and best practices for the recording of complex multimodal
+activity datasets. Reference [11] provides the performance of a
+baseline activity recognition system on the OPPORTUNITY dataset,
+which can be used as a benchmark performance.<br>
+<br>
+<h2>References</h2>
+<h3>First party<br>
+</h3>
+<b>[1] Daniel Roggen, Alberto Calatroni, Mirco Rossi, Thomas Holleczek,
+    Gerhard Tr&ouml;ster, Paul Lukowicz, Gerald Pirkl, David Bannach,
+    Alois Ferscha, Jakob Doppler, Clemens Holzmann, Marc Kurz, Gerald
+    Holl, Ricardo Chavarriaga, Hesam Sagha, Hamidreza Bayati, and
+    Jos&eacute; del R. Mill&aacute;n. "Collecting complex activity data
+    sets in highly rich networked sensor environments" In Seventh
+    International Conference on Networked Sensing Systems (INSS&#8217;10),
+    Kassel, Germany, 6 2010.<br></b>
+[2] Hesam Sagha, Sundara Tejaswi Digumarti, Jos&eacute; del R.
+Mill&aacute;n, Ricardo Chavarriaga, Alberto Calatroni, Daniel
+Roggen, Gerhard Tr&ouml;ster. Benchmarking classification techniques
+using the Opportunity human activity dataset. IEEE International
+Conference on Systems, Man, and Cybernetics, Anchorage, AK, USA,
+October 9-12, 2011<br>
+<b>[3] Video presenting the dataset: <a
+        href="http://vimeo.com/8704668">http://vimeo.com/8704668</a><br></b>
+[4] R. Chavarriaga et al. Ensemble creation and reconfiguration for
+activity recognition: An information theoretic approach. IEEE Conf
+Systems, Man, and Cybernetics (SMC), 2011<br>
+[5] H. Sagha et al. Detecting anomalies to improve classification
+performance in an opportunistic sensor network, 7th IEEE
+International Workshop on Sensor Networks and Systems for Pervasive
+Computing (PerSens), 2011.<br>
+[6] A. Calatroni et al., Automatic transfer of activity recognition
+capabilities between body-worn motion sensors: Training newcomers to
+recognize locomotion, 8th International Conference on Networked
+Sensing Systems (INSS), 2011<br>
+[7] M. Kurz et al. Dynamic Quantification of Activity Recognition
+Capabilities in Opportunistic Systems. Fourth Conference on Context
+Awareness for Proactive Systems, 2011<br>
+[8] H. Sagha et al. Detecting and rectifying anomalies in
+Opportunistic sensor networks. International Conference on Body
+Sensor Networks (BSN), 2011<br>
+[9] R. Chavarriaga et al. Robust activity recognition for assistive
+technologies: Benchmarking ML techniques, Workshop on Machine
+Learning for Assistive Technologies at the 24th Annual Conference on
+Neural Information Processing Systems (NIPS), 2010.<br>
+[10] P. Lukowicz et al. Recording a complex, multi modal activity
+data set for context recognition 1st Workshop on Context-Systems
+Design, Evaluation and Optimisation at ARCS, 2010, 2010<br>
+<b>[11] R. Chavarriaga, H. Sagha, A. Calatroni, S. Digumarti, G. Tr&ouml;ster, J. del R. Mill&aacute;n, D. Roggen. <a
+        href="http://dx.doi.org/10.1016/j.patrec.2012.12.014">The Opportunity challenge: A benchmark database for
+    on-body sensor-based activity recognition, Pattern Recognition Letters</a>, 2013<br></b>
+[12] L.-V. Nguyen-Dinh, D. Roggen, A. Calatroni, G. Tr&ouml;ster. <a href="http://dx.doi.org/10.1109/ISDA.2012.6416645">Improving
+    online gesture recognition with template matching methods in accelerometer data, Proc 12th Int Conf on Intelligent
+    Systems Design and Applications</a>, 2012<br>
+
+<br>
+<h3>Third party</h3>
+Here are a few of the papers from third parties using the
+OPPORTUNITY dataset:<br>
+<br>
+[100] T. Pl&ouml;tz, N. Y.&nbsp; Hammerla, P. Olivier. Feature
+Learning for Activity Recognition in Ubiquitous Computing, IJCAI,
+2011<br>
+[101] A. Manzoor et al., Identifying Important Action Primitives for
+High Level Activity Recognition, Proc. European Conference on Smart
+Sensing and Context (EuroSSC), 2010<br>
+[102] T. Ploetz, N. Hammerla, A. Rozga, A. Reavis, N. Call, G. Abowd. Automatic Assessment of Problem Behavior in
+Individuals with Developmental Disabilities. Proc. 14th Int Conf on Ubiquitous Computing, 2012.<br>
+[103] D. Gordon, J. Czerny, M. Beigl. Activity Recognition for Creatures of Habit: Energy-Efficient Embedded
+Classification using Prediction. Personal and Ubiquitous Computing, 2013.<br>
+<br>
+
+
+<h2>Authors</h2>
+Daniel Roggen, Wearable Computing Laboratory ETH Zurich<br>
+Alberto Calatroni, Wearable Computing Laboratory ETH Zurich<br>
+Long-Van Nguyen-Dinh, Wearable Computing Laboratory ETH Zurich<br>
+Ricardo Chavarriaga, Chair in Non-Invasive Brain-Machine Interface,
+EPFL<br>
+Hesam Sagha, Chair in Non-Invasive Brain-Machine Interface, EPFL<br>
+Sundara Tejaswi Digumarti, Chair in Non-Invasive Brain-Machine
+Interface, EPFL<br>
+<br>
+&amp; OPPORTUNITY consortium members<br>
+<br>
+<h2>History</h2>
+10.11.2011:&nbsp;&nbsp;&nbsp; Initial release on the OPPORTUNITY
+website<br>
+08.06.2012:&nbsp;&nbsp;&nbsp; Donation to the UCI machine learning
+repository<br>
+06.03.2013:&nbsp;&nbsp;&nbsp; Updated publications<br>
+<h2>Contributors</h2>
+<ul>
+    <li>University of Passau: Prof Paul Lukowicz, David Bannach,
+        Gerald Pirkl
+    </li>
+    <li>Johannes Kepler University Linz: Prof Alois Ferscha, Marc
+        Kurz, Gerold Hoelzl<br>
+    </li>
+</ul>
+<br>
+<h2>Acknowledgements</h2>
+This work has been supported by the EU Future and Emerging
+Technologies (FET) contract number FP7-Opportunity-225938. <br>
+<img alt="" src="img/logos-opportunity-final_50p.png"
+     style=" width: 482px; height: 171px;"><br>
+<br>
+</body>
+</html>
